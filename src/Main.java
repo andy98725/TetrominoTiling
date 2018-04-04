@@ -5,11 +5,11 @@ public class Main {
 		// Make input scanner
 		Scanner reader = new Scanner(System.in); 
 		// Prompt
-		System.out.println("Enter a 2^n size from 1-11:");
+		System.out.println("Enter a 2^n size from 1-10:");
 		// Number to store to
 		int n = -1;
 		// Must get positive number
-		while(n <= 0 || n > 11) {
+		while(n <= 0 || n > 10) {
 			try {
 				// Get input
 				n = reader.nextInt();
@@ -19,7 +19,7 @@ public class Main {
 				}
 				// Handle too large
 				if(n > 11) {
-					System.out.println("Please enter a value below 12:");
+					System.out.println("Please enter a value below 11:");
 				}
 			}
 			catch(Exception e) {

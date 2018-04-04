@@ -13,7 +13,7 @@ public class Application extends JPanel {
 	// Serial ID
 	private static final long serialVersionUID = 1L;
 	// Window size
-	static final int wid = 800, hei = 800;
+	static final int wid = 1024, hei = 1024;
 	// Grid size
 	int size;
 	// List
