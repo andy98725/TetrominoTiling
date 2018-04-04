@@ -29,7 +29,7 @@ public class Triomino {
 		switch (ID) {
 		default:
 		case EMPTY: // No more shape, color black
-			drawCol = Color.black;
+			drawCol = Color.white;
 			break;
 		case UL: // Red, add to up and left
 			addShapeLoc(x - 1, y);
