@@ -21,15 +21,15 @@ public class Application extends JPanel {
 	// Draw tetromino border?
 	static boolean drawBorder = true;
 
-	public Application(int n) {
+	public Application(int n, int x, int y) {
 		// Store array size
 		size = (int) Math.pow(2, n);
 		// If n is too large, don't draw border
-		if(n > 8) {
+		if (n > 8) {
 			drawBorder = false;
 		}
 		// Generate tetrominos
-		genTriominos();
+		genTriominos(x, y);
 		// Create window
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -83,17 +83,42 @@ public class Application extends JPanel {
 
 	}
 
-	void genTriominos() {
+	void genTriominos(int x, int y) {
 		// Create list
 		TriominoList = new ArrayList<Triomino>();
 		// Bottom right is empty
-		TriominoList.add(new Triomino(Triomino.EMPTY, 0, 0));
+		TriominoList.add(new Triomino(Triomino.EMPTY, x, y));
 
-		// Recursively fill triomino shapes building off of bottom right
+		// Existing block locations
+		int loff = 1, roff = 1, uoff = 1, doff = 1;
+		// Recursively fill triomino shapes building off of existing block
 		for (int i = 1; i < size; i *= 2) {
-			fillTriomino(Triomino.UL, i, i, i);
-		}
+			// Get location modded by scale
+			final boolean left = (x & i) == 0;
+			final boolean up = (y & i) == 0;
+			if (left) { // Left side
+				if (up) { // Top side
+					fillTriomino(Triomino.UL, x+loff, y+uoff, i);
+					loff += i;
+					uoff += i;
+				} else { // Bottom side
+					fillTriomino(Triomino.DL, x+loff, y-doff, i);
+					loff += i;
+					doff += i;
+				}
+			} else { // Right side
+				if (up) { // Top side
+					fillTriomino(Triomino.UR, x-roff, y+uoff, i);
+					roff += i;
+					uoff += i;
+				} else { // Bottom side
+					fillTriomino(Triomino.DR, x-roff, y-doff, i);
+					roff += i;
+					doff += i;
+				}
 
+			}
+		}
 	}
 
 	void fillTriomino(int ID, int x, int y, int scale) {
