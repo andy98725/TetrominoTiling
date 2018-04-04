@@ -20,8 +20,6 @@ public class Triomino {
 		// Save coords
 		this.x = x;
 		this.y = y;
-		// Store location of base block
-		// tets[x][y] = this;
 		// Create base shape
 		shape = new Area();
 		addShapeLoc(x, y);
@@ -33,30 +31,22 @@ public class Triomino {
 			break;
 		case UL: // Red, add to up and left
 			addShapeLoc(x - 1, y);
-			// tets[x-1][y] = this;
 			addShapeLoc(x, y - 1);
-			// tets[x][y-1] = this;
 			drawCol = Color.red;
 			break;
 		case UR: // Green, add to up and right
 			addShapeLoc(x + 1, y);
-			// tets[x+1][y] = this;
 			addShapeLoc(x, y - 1);
-			// tets[x][y-1] = this;
 			drawCol = Color.green;
 			break;
 		case DL: // Blue, add to down and left
 			addShapeLoc(x - 1, y);
-			// tets[x-1][y] = this;
 			addShapeLoc(x, y + 1);
-			// tets[x][y+1] = this;
 			drawCol = Color.blue;
 			break;
 		case DR: // Green, add to down and right
 			addShapeLoc(x + 1, y);
-			// tets[x+1][y] = this;
 			addShapeLoc(x, y + 1);
-			// tets[x][y+1] = this;
 			drawCol = Color.yellow;
 			break;
 		}
