@@ -8,11 +8,11 @@ public class Triomino {
 	public static final int size = 32;
 	// Constants for identifier in construction
 	public static final int EMPTY = -1, UL = 0, UR = 1, DL = 2, DR = 3;
-	// Coordinates
+	// Coordinates in grid
 	int x, y;
-	// Shape
+	// Shape to draw
 	Area shape;
-	// Color
+	// Color to draw
 	Color drawCol;
 
 	// Constructor: Pass in type and coordinates
@@ -26,7 +26,7 @@ public class Triomino {
 		// Set remaining shape and color based off type
 		switch (ID) {
 		default:
-		case EMPTY: // No more shape, color black
+		case EMPTY: // No more shape to add, color white
 			drawCol = Color.white;
 			break;
 		case UL: // Red, add to up and left

@@ -12,19 +12,19 @@ import javax.swing.JPanel;
 public class Application extends JPanel {
 	// Serial ID
 	private static final long serialVersionUID = 1L;
-	// Window size
+	// Display size
 	static final int wid = 1024, hei = 1024;
 	// Grid size
 	int size;
-	// List
+	// Triomino list
 	List<Triomino> TriominoList;
 	// Draw tetromino border?
 	static boolean drawBorder = true;
 
 	public Application(int n, int x, int y) {
-		// Store array size
+		// Store grid size
 		size = (int) Math.pow(2, n);
-		// If n is too large, don't draw border
+		// If n is too large, don't draw borders on triominos
 		if (n > 8) {
 			drawBorder = false;
 		}
@@ -69,9 +69,9 @@ public class Application extends JPanel {
 	protected void paintComponent(Graphics graphics) {
 		// Graphics2D for increased access to functions
 		Graphics2D g = (Graphics2D) graphics;
-		// Scale tetrominos to window size
+		// Scale triominos to window size
 		g.scale((float) wid / (Triomino.size * (size)), (float) hei / (Triomino.size * (size)));
-		// Draw tetrominos
+		// Draw triominos
 		for (Triomino t : TriominoList) {
 			t.draw(g);
 		}
@@ -81,14 +81,14 @@ public class Application extends JPanel {
 	void genTriominos(int x, int y) {
 		// Create list
 		TriominoList = new ArrayList<Triomino>();
-		// Bottom right is empty
+		// Add empty square at location
 		TriominoList.add(new Triomino(Triomino.EMPTY, x, y));
 
-		// Existing block locations
+		// Relative locations to build off of
 		int loff = 1, roff = 1, uoff = 1, doff = 1;
 		// Recursively fill triomino shapes building off of existing block
 		for (int i = 1; i < size; i *= 2) {
-			// Get location modded by scale
+			// Get location to build off
 			final boolean left = (x & i) == 0;
 			final boolean up = (y & i) == 0;
 			if (left) { // Left side
@@ -125,9 +125,10 @@ public class Application extends JPanel {
 		// Get relative scale for recursion use
 		int halfOff = scale / 2, fullOff = scale / 2 + 1;
 		// A size 2n triomino is composed of 4 size n triominos.
+		// One at the inside corner, and 3 touching each edge.
 		// Depending on shape, call recursive function to fill.
 		switch (ID) {
-		default: // Unidentified. Oh well.
+		default: // Unidentified. Catch bad case.
 			break;
 		case Triomino.UL: // _| shape
 			// Fill core triomino

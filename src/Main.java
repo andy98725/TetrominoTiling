@@ -4,11 +4,11 @@ public class Main {
 	public static void main(String[] args) {
 		// Make input scanner
 		Scanner reader = new Scanner(System.in); 
-		// Prompt
-		System.out.println("Enter a 2^n size from 1-10:");
-		// Number to store to
+		// Size of 2^n
 		int n = -1;
-		// Must get positive number
+		// Prompt for size input
+		System.out.println("Enter a 2^n size from 1-10:");
+		// Must get positive number. Limiting to 10 and below for performance purposes.
 		while(n <= 0 || n > 10) {
 			try {
 				// Get input
@@ -18,7 +18,7 @@ public class Main {
 					System.out.println("Please enter a positive value:");
 				}
 				// Handle too large
-				if(n > 11) {
+				if(n > 10) {
 					System.out.println("Please enter a value below 11:");
 				}
 			}
@@ -29,13 +29,12 @@ public class Main {
 			// Clear buffer
 			reader.nextLine();
 		}
-		// Find max coordinate
+		// Find board size
 		int maxSize = (int) Math.pow(2,n);
-		String maxSizeString =Integer.toString(maxSize);
-		// Prompt for x
+		// Coordinates to get
+		int x = -1, y = -1;
+		// Prompt for x coordinate
 		System.out.println("Enter x coord for the missing tile from 0-"+Integer.toString(maxSize-1)+":");
-		// Number to store to
-		int x = -1;
 		// Must get positive number
 		while(x < 0 || x >= maxSize) {
 			try {
@@ -45,9 +44,9 @@ public class Main {
 				if(x < 0) {
 					System.out.println("Please enter a positive value:");
 				}
-				// Handle too large
+				// Handle above max
 				if(x >= maxSize) {
-					System.out.println("Please enter a value below "+maxSizeString+":");
+					System.out.println("Please enter a value below "+Integer.toString(maxSize)+":");
 				}
 			}
 			catch(Exception e) {
@@ -57,10 +56,8 @@ public class Main {
 			// Clear buffer
 			reader.nextLine();
 		}
-		// Prompt for x
+		// Prompt for y
 		System.out.println("Enter y coord for the missing tile from 0-"+Integer.toString(maxSize-1)+":");
-		// Number to store to
-		int y = -1;
 		// Must get positive number
 		while(y < 0 || y >= maxSize) {
 			try {
@@ -72,7 +69,7 @@ public class Main {
 				}
 				// Handle too large
 				if(y >= maxSize) {
-					System.out.println("Please enter a value below "+maxSizeString+":");
+					System.out.println("Please enter a value below "+Integer.toString(maxSize)+":");
 				}
 			}
 			catch(Exception e) {
