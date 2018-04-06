@@ -42,19 +42,14 @@ public class Application extends JPanel {
 	void initWindow() {
 		// Set size
 		setPreferredSize(new Dimension(wid, hei));
-		setBounds(0, 0, wid, hei);
 		// Improves rendering
 		setDoubleBuffered(true);
 		// Default bgcolor
 		setBackground(Color.BLACK);
-		// Allow freeform positioning
-		setLayout(null);
 		// Make window
 		JFrame window = new JFrame();
 		// Add app
 		window.add(this);
-		// Let user select (to get key inputs)
-		window.setFocusable(true);
 		// Not resizable
 		window.setResizable(false);
 		// Window header
