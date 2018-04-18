@@ -39,7 +39,7 @@ public class Application extends JPanel {
 	}
 
 	// Make container window
-	void initWindow() {
+	private void initWindow() {
 		// Set size
 		setPreferredSize(new Dimension(wid, hei));
 		// Improves rendering
@@ -64,7 +64,7 @@ public class Application extends JPanel {
 		window.setVisible(true);
 	}
 
-	// Overrride draw
+	// Override draw
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		// Graphics2D for increased access to functions
@@ -75,10 +75,9 @@ public class Application extends JPanel {
 		for (Triomino t : TriominoList) {
 			t.draw(g);
 		}
-
 	}
 
-	void genTriominos(int x, int y) {
+	private void genTriominos(int x, int y) {
 		// Create list
 		TriominoList = new ArrayList<Triomino>();
 		// Add empty square at location
@@ -116,7 +115,7 @@ public class Application extends JPanel {
 		}
 	}
 
-	void fillTriomino(int ID, int x, int y, int scale) {
+	private void fillTriomino(int ID, int x, int y, int scale) {
 		// Break recursion at scale = 1.
 		if (scale == 1) {
 			TriominoList.add(new Triomino(ID, x, y));
